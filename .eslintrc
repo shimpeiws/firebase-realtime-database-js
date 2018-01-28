@@ -1,0 +1,41 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react"
+  ],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "prettier/prettier": [2, {
+        trailingComma: none,
+        singleQuote: true,
+        semi: false
+    }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/prop-types": 0,
+    "arrow-body-style": 0
+  },
+  "plugins": [
+    "react", "import", "prettier"
+  ],
+  "settings": {
+    "import/parser": "babel-eslint",
+    "import/resolve": {
+      "moduleDirectory": ["node_modules", "src"]
+    }
+  },
+  "globals": {
+    "__DEVELOPMENT__": true,
+    "__CLIENT__": true,
+    "__SERVER__": true,
+    "__DISABLE_SSR__": true,
+    "__GOOGLE_TAG_MANAGER__": true,
+    "__DEVTOOLS__": true,
+    "webpackIsomorphicTools": true
+  }
+}
