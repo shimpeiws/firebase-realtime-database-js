@@ -10,9 +10,31 @@ const config = {
   messagingSenderId: env.messagingSenderId
 }
 
-console.info('config', config)
-
 Firebase.initializeApp(config);
+
+// Authentication
+
+console.info('set callback');
+Firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // User is signed in.
+    console.info('login success', user);
+  } else {
+    // User is signed out.
+    console.info('signed out', user);
+  }
+});
+
+
+console.info('sign in');
+Firebase.auth().signInWithEmailAndPassword(env.userEmail, env.userPassword).catch((error) => {
+  console.info('auth error!!!');
+  // Handle Errors here.
+  const errorCode = error.code;
+  const errorMessage = error.message;
+});
+
+// Realtime Database
 
 const database = Firebase.database();
 
