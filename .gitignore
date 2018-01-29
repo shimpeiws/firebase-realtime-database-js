@@ -7,3 +7,4 @@ coverage
 .yarn-cache
 public/app.js
 .env.js
+firebase-adminsdk.json

@@ -1,5 +1,6 @@
-import env from '../.env.js'
-import Firebase from 'firebase'
+import env from '../.env.js';
+import Firebase from 'firebase';
+import * as FirebaseAdmin from "firebase-admin";
 
 const config = {
   apiKey: env.apiKey,
@@ -13,6 +14,23 @@ const config = {
 Firebase.initializeApp(config);
 
 // Authentication
+
+var serviceAccount = require(env.serviceAccountJsonPath);
+
+FirebaseAdmin.initializeApp({
+  credential: FirebaseAdmin.credential.cert(serviceAccount),
+  databaseURL: env.databaseURL
+});
+
+const uid = "foobar";
+
+FirebaseAdmin.auth().createCustomToken(uid)
+  .then(function(customToken) {
+    console.info('customToken', customToken);
+  })
+  .catch(function(error) {
+    console.log("Error creating custom token:", error);
+  });
 
 console.info('set callback');
 Firebase.auth().onAuthStateChanged((user) => {
